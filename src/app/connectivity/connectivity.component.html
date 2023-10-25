@@ -1,0 +1,222 @@
+<div>
+  <button class="action-button" (click)="toggleIncidentList()">Incident List</button>
+  <button class="action-button" (click)="toggleForwardedList()">Forwarded Incident List</button>
+  <button class="action-button" (click)="toggleHighPriorityList()" [class.highlighted]="buttonClicked">
+    High Priority and High Severity Incidents List
+  </button>
+</div>
+
+<div *ngIf="showIncidentList">
+  <ul>
+    <li *ngFor="let incident of incidents">
+      <div>
+        <span class="side-heading">Description:</span>
+        <span class="attribute">{{ incident.description }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Issue Type:</span>
+        <span class="attribute">{{ incident.issueType }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement:</span>
+        <span class="attribute">{{ incident.networkElement.name }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement Type:</span>
+        <span class="attribute">{{ incident.networkElement.type }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement Model:</span>
+        <span class="attribute">{{ incident.networkElement.model }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement IpAddress:</span>
+        <span class="attribute">{{ incident.networkElement.ipAddress }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement Manufacturer:</span>
+        <span class="attribute">{{ incident.networkElement.manufacturer }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Components:</span>
+        <span class="attribute">{{ incident.component.componentName }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Created Date:</span>
+        <span class="attribute">{{ incident.createdTime }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Severity:</span>
+        <span class="attribute">{{ incident.severity }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Priority:</span>
+        <span class="attribute">{{ incident.priority }}</span>
+      </div>
+      <div>
+        <label class="label-heading" for="resolution">Resolution:</label>
+        <input type="text" id="resolution" [(ngModel)]="incident.resolution" />
+      </div>
+      <button (click)="submitResolution(incident)">Submit Resolution</button>
+      <div>
+        <label for="targetGroup">Forward to Group:</label>
+        <select id="targetGroup" [(ngModel)]="selectedGroup">
+          <option *ngFor="let group of availableGroups" [value]="group">
+            {{ group }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="forwardingMessage">Forwarding Message:</label>
+        <input type="text" id="forwardingMessage" [(ngModel)]="forwardingMessage" />
+      </div>
+      <button (click)="forwardIncident(incident)">Forward Incident</button>
+    </li>
+  </ul>
+</div>
+
+<div *ngIf="showForwardedList">
+  <div *ngFor="let incident of forwardedIncidents">
+    <div>
+      <span class="side-heading">Description:</span>
+      <span class="attribute">{{ incident.description }}</span>
+    </div>
+    <div>
+      <span class="side-heading">Issue Type:</span>
+      <span class="attribute">{{ incident.issueType }}</span>
+    </div>
+    <div>
+      <span class="side-heading">Forwarded From:</span>
+      <span class="attribute">{{ incident.assignmentGroup }}</span>
+    </div>
+    <div>
+      <span class="side-heading">NetworkElement:</span>
+      <span class="attribute">{{ incident.networkElement.name }}</span>
+    </div>
+    <div>
+      <span class="side-heading">NetworkElement Type:</span>
+      <span class="attribute">{{ incident.networkElement.type }}</span>
+    </div>
+    <div>
+      <span class="side-heading">NetworkElement Model:</span>
+      <span class="attribute">{{ incident.networkElement.model }}</span>
+    </div>
+    <div>
+      <span class="side-heading">NetworkElement IpAddress:</span>
+      <span class="attribute">{{ incident.networkElement.ipAddress }}</span>
+    </div>
+    <div>
+      <span class="side-heading">NetworkElement Manufacturer:</span>
+      <span class="attribute">{{ incident.networkElement.manufacturer }}</span>
+    </div>
+    <div>
+      <span class="side-heading">Created Date:</span>
+      <span class="attribute">{{ incident.createdTime }}</span>
+    </div>
+    <div>
+      <span class="side-heading">Components:</span>
+      <span class="attribute">{{ incident.component.componentName }}</span>
+    </div>
+    <div>
+      <span class="side-heading">Severity:</span>
+      <span class="attribute">{{ incident.severity }}</span>
+    </div>
+    <div>
+      <span class="side-heading">Priority:</span>
+      <span class="attribute">{{ incident.priority }}</span>
+    </div>
+    <p class="attribute">hii</p>
+    <div>
+      <span class="side-heading">Forwarding Message:</span>
+      <span class="attribute">{{ incident.forwardingmessage }}</span>
+    </div>
+    <div>
+      <label class="label-heading" for="resolution">Resolution:</label>
+      <input type="text" id="resolution" [(ngModel)]="incident.resolution" />
+    </div>
+    <button (click)="submitResolution(incident)">Submit Resolution</button>
+  </div>
+</div>
+
+<div *ngIf="showHighPriorityList">
+  <ul>
+    <li *ngFor="let incident of highPriorityHighSeverityIncidents">
+      <div>
+        <span class="side-heading">Description:</span>
+        <span class="attribute">{{ incident.description }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Issue Type:</span>
+        <span class="attribute">{{ incident.issueType }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement:</span>
+        <span class="attribute">{{ incident.networkElement.name }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement Type:</span>
+        <span class="attribute">{{ incident.networkElement.type }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement Model:</span>
+        <span class="attribute">{{ incident.networkElement.model }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement IpAddress:</span>
+        <span class="attribute">{{ incident.networkElement.ipAddress }}</span>
+      </div>
+      <div>
+        <span class="side-heading">NetworkElement Manufacturer:</span>
+        <span class="attribute">{{ incident.networkElement.manufacturer }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Components:</span>
+        <span class="attribute">{{ incident.component.componentName }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Created Date:</span>
+        <span class="attribute">{{ incident.createdTime }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Severity:</span>
+        <span class="attribute">{{ incident.severity }}</span>
+      </div>
+      <div>
+        <span class="side-heading">Priority:</span>
+        <span class="attribute">{{ incident.priority }}</span>
+      </div>
+      <div>
+        <label for="targetGroup">Forward to Group:</label>
+        <select id="targetGroup" [(ngModel)]="selectedGroup">
+          <option *ngFor="let group of availableGroups" [value]="group">
+            {{ group }}
+          </option>
+        </select>
+      </div>
+      <div>
+        <label for="forwardingMessage">Forwarding Message:</label>
+        <input type="text" id="forwardingMessage" [(ngModel)]="forwardingMessage" />
+      </div>
+      <button (click)="forwardIncident(incident)">Forward Incident</button>
+    </li>
+  </ul>
+</div>
+
+<style>
+  .action-button {
+    display: inline-block;
+    margin-right: 10px; /* Adjust the margin as needed */
+  }
+
+  .side-heading {
+    color: #0400ffea; /* Blue color for side headings */
+  }
+
+  .attribute {
+    color: brown; /* Green color for attributes */
+  }
+
+  .label-heading {
+    color: red; /* Red color for label heading */
+  }
+</style>

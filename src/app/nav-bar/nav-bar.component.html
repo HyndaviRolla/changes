@@ -1,0 +1,179 @@
+<!--  
+  <!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Navigation Bar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    .nav__links {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .nav__link {
+      text-decoration: none;
+      color: #fff;
+      padding: 10px;
+      transition: color 0.3s;
+    }
+
+    .nav__link:hover {
+      color: #ffd700; /* Change color on hover */
+    }
+
+    /* Add a subtle underline on hover */
+    .nav__link:hover::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background-color: #ffd700;
+      animation: underline 0.3s forwards;
+    }
+
+    @keyframes underline {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+  </style> 
+</head>
+<body>
+  
+  <nav>
+    <ul class="nav__links">
+      <li>
+        <a href="/network" class="nav__link">networkElements</a>
+      </li>
+      <li>
+        <a href="/hardware" class="nav__link">Hardware</a>
+      </li>
+      
+      <li>
+        <a href="/incident" class="nav__link">Create Ticket</a>
+      </li>
+     
+      <li>
+        <a href="/software" class="nav__link">Software</a>
+      </li>
+      <li>
+        <a href="/login" class="nav__link">Login</a>
+      </li>
+    </ul>
+  </nav>
+</body>
+
+</html> -->
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Advanced Navigation Bar</title>
+  <style>
+    body {
+      margin: 0;
+      font-family: 'Arial', sans-serif;
+    }
+
+    nav {
+      background-color: #333;
+      padding: 10px;
+    }
+
+    .nav__links {
+      list-style: none;
+      padding: 0;
+      display: flex;
+      justify-content: space-around;
+      align-items: center;
+    }
+
+    .nav__link {
+      text-decoration: none;
+      color: #fff;
+      padding: 10px;
+      transition: color 0.3s;
+    }
+
+    .nav__link:hover {
+      color: #ffd700; /* Change color on hover */
+    }
+
+    /* Add a subtle underline on hover */
+    .nav__link:hover::after {
+      content: '';
+      display: block;
+      height: 2px;
+      background-color: #ffd700;
+      animation: underline 0.3s forwards;
+    }
+
+    @keyframes underline {
+      from {
+        width: 0;
+      }
+      to {
+        width: 100%;
+      }
+    }
+  </style> 
+</head>
+<body>
+  
+  <nav>
+    <ul class="nav__links">
+      <li>
+        <a href="/network" class="nav__link">networkElements</a>
+      </li>
+
+      <li *ngIf="isAdmin()">
+        <a routerLink="/hardware" class="nav__link">Hardware Issues</a>
+      </li>
+     
+ 
+      <li *ngIf="isAdmin()">
+        <a routerLink="/connectivity" class="nav__link">Connectivity Issues</a>
+      </li>
+     
+      <!-- <li   class="dropdown">
+        <a href="#" class="nav__link">My Tickets</a>
+        <ul class="dropdown-content">
+          <li><a href="/incident" class="nav__link">Create Ticket</a></li>
+        </ul>
+      </li> -->
+     
+      <li>
+        <a href="/incident" class="nav__link" >Create Ticket</a>
+      </li>
+
+
+       
+      <li>
+        <a href="/myList" class="nav__link" >My Tickets</a>
+      </li>
+ 
+      <li>
+        <a href="/login" class="nav__link">Login</a>
+      </li>
+    </ul>
+  </nav>
+ 
+</body>
+</html>

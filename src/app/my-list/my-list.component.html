@@ -1,0 +1,36 @@
+ 
+<style>
+  .incident-value {
+    color:brown; /* Change this to the desired color for incident values */
+  }
+/* 
+  .highlight {
+    background-color: yellow;   } */
+
+    .resolution-heading {
+    color: red; /* Change this to the desired color for the "Resolution" heading */
+  }
+</style>
+
+<h2>My Tickets list</h2>
+
+<ul>
+  <li *ngFor="let incident of myList" class="incident-item">
+    <p class="highlight">Ticket Id: <span class="incident-value">{{ incident.id }}</span></p> 
+    <p class="highlight">Description: <span class="incident-value">{{ incident.description }}</span></p>
+    <p class="highlight">Issue Type: <span class="incident-value">{{ incident.issueType }}</span></p>
+    <p class="highlight">NetworkElement: <span class="incident-value">{{ incident.networkElement.name }}</span></p>
+    <p class="highlight">NetworkElement Type: <span class="incident-value">{{ incident.networkElement.type }}</span></p>
+    <p class="highlight">NetworkElement Model: <span class="incident-value">{{ incident.networkElement.model }}</span></p>
+    <p class="highlight">NetworkElement Manufacturer: <span class="incident-value">{{ incident.networkElement.manufacturer }}</span></p>
+
+    <p class="highlight">Components: <span class="incident-value">{{ incident.component.componentName }}</span></p>
+    
+    <p class="highlight">Status: <span class="incident-value">{{ incident.status }}</span></p>
+    <p class="highlight">created At: <span class="incident-value">{{ incident.createdTime }}</span></p>
+    <p class="highlight">Priority: <span class="incident-value">{{ incident.priority }}</span></p> 
+    <p class="highlight">Severity: <span class="incident-value">{{ incident.severity }}</span></p>
+    
+    <p class="highlight resolution-heading">Resolution: <span class="incident-value">{{ incident.resolution }}</span></p>  
+  </li>
+</ul>
